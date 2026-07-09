@@ -24,6 +24,13 @@
   @keyframes barGrow{0%{transform:scaleY(.3)}100%{transform:scaleY(1)}}
   input,textarea,select{font-family:'Nunito',sans-serif}
   input:focus,textarea:focus{outline:none;border-color:var(--accent) !important;box-shadow:0 0 0 3px var(--ring)}
+  @media (max-width:767px){
+    header > div{padding:14px 18px !important}
+    .grid-stack{grid-template-columns:1fr !important}
+    .preview-col{position:static !important;margin-top:18px}
+    .preview-col > div{min-height:auto !important}
+    .pkg-modal{padding-top:64px !important}
+  }
 </style>
 </helmet>
 
@@ -67,7 +74,7 @@
     </div>
 
     <!-- BODY: question + live preview -->
-    <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:start">
+    <div class="grid-stack" style="display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:start">
 
       <!-- LEFT: step content -->
       <div>
@@ -153,7 +160,7 @@
           <div style="animation:stepIn .35s ease both">
             <h1 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,34px);letter-spacing:-0.01em;color:var(--c-text)">Už jen kontakt a je hotovo!</h1>
             <p style="margin:10px 0 26px;font-size:16.5px;line-height:1.55;color:var(--c-soft)">Kam máme hotovou píseň poslat a do kdy ji potřebujete.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="grid-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
               <div>
                 <label style="display:block;font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;color:var(--c-mid);margin-bottom:9px">Vaše jméno</label>
                 <input value="{{ data.buyerName }}" onInput="{{ onBuyer }}" placeholder="Jan Novák" style="width:100%;padding:14px 16px;font-size:16px;color:var(--c-text);background:var(--page-bg);border:1.5px solid var(--surface);border-radius:14px;transition:border-color .15s,box-shadow .15s">
@@ -201,7 +208,7 @@
       </div>
 
       <!-- RIGHT: live song preview -->
-      <div style="position:sticky;top:96px">
+      <div class="preview-col" style="position:sticky;top:96px">
         <div style="position:relative;overflow:hidden;background:var(--grad-1);border:1px solid var(--card-border);border-radius:26px;padding:28px 26px;box-shadow:0 24px 50px -34px rgba(var(--shadow),.45);min-height:548px;display:flex;flex-direction:column">
           <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)">Vaše píseň vzniká</div>
 
@@ -294,13 +301,13 @@
   <!-- ============ PACKAGE MODAL ============ -->
   <sc-if value="{{ showPkg }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ onTogglePkg }}" style="position:fixed;inset:0;z-index:100;background:rgba(42,30,28,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto">
-    <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:920px;margin:auto;background:var(--page-bg);border:1px solid var(--surface);border-radius:28px;padding:clamp(28px,4vw,44px);box-shadow:0 50px 90px -30px rgba(42,30,28,.65);animation:stepIn .28s ease both">
+    <div onClick="{{ stop }}" class="pkg-modal" style="position:relative;width:100%;max-width:920px;margin:auto;background:var(--page-bg);border:1px solid var(--surface);border-radius:28px;padding:clamp(28px,4vw,44px);box-shadow:0 50px 90px -30px rgba(42,30,28,.65);animation:stepIn .28s ease both">
       <button onClick="{{ onTogglePkg }}" aria-label="Zavřít" style="position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;background:var(--c-card);border:1px solid var(--surface);color:var(--c-soft);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:var(--soft)">×</button>
       <div style="text-align:center;max-width:480px;margin:0 auto 30px">
         <h2 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,32px);letter-spacing:-0.01em;color:var(--c-text)">Vyberte si balíček, který vám sedí.</h2>
         <p style="margin:8px 0 0;font-size:15.5px;color:var(--c-soft)">Záruka vrácení peněz · Úpravy zdarma u každého balíčku</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start">
+      <div class="grid-stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start">
         <sc-for list="{{ modalTiers }}" as="t" hint-placeholder-count="3">
           <div style="{{ t.cardStyle }}">
             <sc-if value="{{ t.popular }}" hint-placeholder-val="{{ false }}">

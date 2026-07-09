@@ -22,6 +22,15 @@
   @keyframes voiceBar{0%,100%{transform:scaleY(.38)}50%{transform:scaleY(1)}}
   .flower{transform-origin:center}
   ::selection{background:var(--sel)}
+  @media (max-width:767px){
+    header > div{padding:14px 18px !important}
+    .nav-link{display:none !important}
+    .grid-stack{grid-template-columns:1fr !important}
+    .tier-lift{transform:none !important}
+    .hero-overlay{position:static !important;left:auto !important;bottom:auto !important;max-width:none !important;margin-top:14px !important}
+    .deco{transform:scale(.5);opacity:.35 !important}
+    section{scroll-margin-top:70px}
+  }
 </style>
 </helmet>
 
@@ -36,10 +45,10 @@
         <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:23px;letter-spacing:-0.01em;color:var(--c-text)">Songo</span>
       </a>
       <nav style="display:flex;align-items:center;gap:30px">
-        <a href="#how" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Jak to funguje</a>
-        <a href="#samples" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ukázky</a>
-        <a href="#pricing" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ceník</a>
-        <a href="#faq" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Časté dotazy</a>
+        <a class="nav-link" href="#how" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Jak to funguje</a>
+        <a class="nav-link" href="#samples" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ukázky</a>
+        <a class="nav-link" href="#pricing" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ceník</a>
+        <a class="nav-link" href="#faq" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Časté dotazy</a>
         <a href="#pricing" style="display:inline-flex;align-items:center;background:var(--accent);color:var(--c-onaccent);padding:11px 20px;border-radius:999px;font-family:'Quicksand',sans-serif;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 8px 20px -10px rgba(var(--shadow),.55)" style-hover="background:var(--accent-dark)">Vytvořit píseň</a>
       </nav>
     </div>
@@ -82,7 +91,7 @@
   <!-- ============ HERO B — split editorial ============ -->
   <sc-if value="{{ isB }}" hint-placeholder-val="{{ false }}">
   <section style="padding:60px 0 56px">
-    <div style="max-width:1120px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
+    <div class="grid-stack" style="max-width:1120px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
       <div>
         
         <h1 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(38px,4.6vw,58px);line-height:1.07;letter-spacing:-0.02em;color:var(--c-text);text-wrap:balance">Proměňte svůj příběh v píseň, na kterou nezapomenou.</h1>
@@ -97,7 +106,7 @@
         <div style="aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:repeating-linear-gradient(135deg,var(--photo-1),var(--photo-1) 11px,var(--photo-2) 11px,var(--photo-2) 22px);display:flex;align-items:center;justify-content:center;border:1px solid var(--card-border)">
           <span style="font-family:'Nunito';font-size:13px;color:var(--c-muted);background:var(--page-bg);padding:7px 12px;border-radius:8px;font-weight:600">fotka — vřelý, opravdový okamžik</span>
         </div>
-        <div style="position:absolute;left:-14px;bottom:22px;display:flex;align-items:center;gap:13px;background:var(--c-card);border:1px solid var(--surface);border-radius:18px;padding:13px 16px;box-shadow:0 22px 40px -22px rgba(var(--ambient),.45);max-width:280px">
+        <div class="hero-overlay" style="position:absolute;left:-14px;bottom:22px;display:flex;align-items:center;gap:13px;background:var(--c-card);border:1px solid var(--surface);border-radius:18px;padding:13px 16px;box-shadow:0 22px 40px -22px rgba(var(--ambient),.45);max-width:280px">
           <a href="#samples" style="flex:none;width:42px;height:42px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;text-decoration:none">
             <span style="width:0;height:0;border-left:12px solid var(--c-onaccent);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px"></span>
           </a>
@@ -117,12 +126,12 @@
       <div ref="{{ cardRef }}" style="position:relative;margin:0 22px;border:1px solid var(--card-border);border-radius:34px;background:var(--grad-1);min-height:calc(100svh - 104px);display:flex;align-items:center;justify-content:center;padding:clamp(40px,7vw,80px) 28px;box-shadow:0 30px 60px -40px rgba(225,120,95,.4);overflow:hidden;will-change:margin,border-radius">
 
         <!-- floral decorations -->
-        <div class="flower" aria-hidden="true" style="position:absolute;top:-30px;left:-18px;width:150px;opacity:.55;animation:driftY 9s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
-        <div class="flower" aria-hidden="true" style="position:absolute;top:34px;right:-26px;width:112px;opacity:.5;animation:driftY 11s ease-in-out infinite 1s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
-        <div class="flower" aria-hidden="true" style="position:absolute;bottom:-32px;right:64px;width:98px;opacity:.5;animation:sway 8s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
-        <div class="flower" aria-hidden="true" style="position:absolute;bottom:36px;left:-16px;width:126px;opacity:.45;animation:driftY 10s ease-in-out infinite .5s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
-        <div class="flower" aria-hidden="true" style="position:absolute;top:47%;left:6%;width:44px;opacity:.6;animation:sway 7s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
-        <div class="flower" aria-hidden="true" style="position:absolute;top:28%;right:9%;width:38px;opacity:.55;animation:sway 9s ease-in-out infinite .8s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;top:-30px;left:-18px;width:150px;opacity:.55;animation:driftY 9s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;top:34px;right:-26px;width:112px;opacity:.5;animation:driftY 11s ease-in-out infinite 1s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;bottom:-32px;right:64px;width:98px;opacity:.5;animation:sway 8s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;bottom:36px;left:-16px;width:126px;opacity:.45;animation:driftY 10s ease-in-out infinite .5s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;top:47%;left:6%;width:44px;opacity:.6;animation:sway 7s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower deco" aria-hidden="true" style="position:absolute;top:28%;right:9%;width:38px;opacity:.55;animation:sway 9s ease-in-out infinite .8s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
 
         <div style="position:relative;z-index:1;max-width:760px;text-align:center">
         
@@ -149,7 +158,7 @@
       </div>
       <!-- Simple -->
       <sc-if value="{{ howSimple }}" hint-placeholder-val="{{ true }}">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+      <div class="grid-stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
           <div style="text-align:center">
             <div style="width:52px;height:52px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:20px;color:var(--accent);margin:0 auto 20px">{{ step.num }}</div>
@@ -162,7 +171,7 @@
 
       <!-- Editorial -->
       <sc-if value="{{ howEditorial }}" hint-placeholder-val="{{ false }}">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:52px">
+      <div class="grid-stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:52px">
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
           <div style="border-top:2px solid var(--line);padding-top:24px">
             <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:50px;line-height:1;color:var(--accent);letter-spacing:-0.02em">{{ step.num }}</div>
@@ -175,7 +184,7 @@
 
       <!-- Timeline -->
       <sc-if value="{{ howTimeline }}" hint-placeholder-val="{{ false }}">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto">
+      <div class="grid-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto">
         <div>
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
           <div style="display:flex;gap:24px">
@@ -205,7 +214,7 @@
 
       <!-- Cards (original) -->
       <sc-if value="{{ howCards }}" hint-placeholder-val="{{ false }}">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div class="grid-stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
           <div style="background:var(--c-card);border:1px solid var(--surface);border-radius:22px;padding:32px 28px;box-shadow:0 14px 30px -24px rgba(var(--ambient),.3)">
             <div style="width:46px;height:46px;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'Quicksand';font-weight:700;font-size:18px;color:var(--accent);margin-bottom:20px">{{ step.num }}</div>
@@ -233,7 +242,7 @@
         </div>
 
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="grid-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
         <sc-for list="{{ sampleCards }}" as="card" hint-placeholder-count="6">
           <div style="background:var(--c-card);border:1px solid var(--surface);border-radius:20px;padding:20px 22px;box-shadow:0 14px 30px -26px rgba(var(--ambient),.3)">
             <div style="display:flex;align-items:center;gap:15px">
@@ -266,12 +275,12 @@
         
         <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);letter-spacing:-0.01em;color:var(--c-text)">Vyberte si balíček, který vám sedí.</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;max-width:1010px;margin:0 auto">
+      <div class="grid-stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;max-width:1010px;margin:0 auto">
         <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
 
           <!-- Popular -->
           <sc-if value="{{ t.popular }}" hint-placeholder-val="{{ false }}">
-          <div style="position:relative;background:var(--c-card);border:2px solid var(--accent);border-radius:26px;padding:36px 30px 32px;box-shadow:0 30px 60px -34px rgba(var(--shadow),.45);transform:translateY(-22px);display:flex;flex-direction:column">
+          <div class="tier-lift" style="position:relative;background:var(--c-card);border:2px solid var(--accent);border-radius:26px;padding:36px 30px 32px;box-shadow:0 30px 60px -34px rgba(var(--shadow),.45);transform:translateY(-22px);display:flex;flex-direction:column">
             <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--c-onaccent);font-family:'Quicksand';font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 16px;border-radius:999px;box-shadow:0 8px 18px -8px rgba(var(--shadow),.6);white-space:nowrap">Nejoblíbenější</div>
             <div style="display:flex;align-items:baseline;gap:7px;margin-top:12px">
               <span style="font-family:'Quicksand';font-weight:700;font-size:46px;color:var(--c-text);letter-spacing:-0.02em;line-height:1">{{ t.price }}</span>
@@ -319,19 +328,19 @@
   <!-- ============ FAQ ============ -->
   <section id="faq" data-screen-label="Časté dotazy" style="position:relative;overflow:visible;padding:64px 0;background:linear-gradient(180deg,var(--band-bg) 0,var(--page-bg) 130px,var(--page-bg) calc(100% - 120px),var(--grad-1) 100%)">
     <!-- floating question-mark watermarks -->
-    <div aria-hidden="true" style="position:absolute;top:-24px;left:-14px;width:150px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:150px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite">?</div>
-    <div aria-hidden="true" style="position:absolute;top:40px;right:-18px;width:112px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:112px;line-height:1;color:#f7c0da;opacity:.5;pointer-events:none;z-index:1;animation:driftY 11s ease-in-out infinite 1s">?</div>
-    <div aria-hidden="true" style="position:absolute;bottom:-20px;right:56px;width:98px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:98px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite">?</div>
-    <div aria-hidden="true" style="position:absolute;bottom:28px;left:-12px;width:126px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:126px;line-height:1;color:#f7c0da;opacity:.45;pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite .5s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:46%;left:5%;width:44px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:44px;line-height:1;color:#f5a8cb;opacity:.6;pointer-events:none;z-index:1;animation:sway 7s ease-in-out infinite">?</div>
-    <div aria-hidden="true" style="position:absolute;top:26%;right:8%;width:38px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:38px;line-height:1;color:#f7c0da;opacity:.55;pointer-events:none;z-index:1;animation:sway 9s ease-in-out infinite .8s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:8%;left:22%;width:56px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:56px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:1;animation:driftY 8s ease-in-out infinite .3s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:14%;right:24%;width:34px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:34px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 10s ease-in-out infinite .6s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:62%;left:11%;width:64px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:64px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:1;animation:driftY 12s ease-in-out infinite 1.2s">?</div>
-    <div aria-hidden="true" style="position:absolute;bottom:12%;left:32%;width:40px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:40px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite 1.5s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:70%;right:12%;width:58px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:58px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite .9s">?</div>
-    <div aria-hidden="true" style="position:absolute;bottom:34%;right:26%;width:32px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:32px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 11s ease-in-out infinite .4s">?</div>
-    <div aria-hidden="true" style="position:absolute;top:40%;right:2%;width:70px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:70px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite 1.8s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:-24px;left:-14px;width:150px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:150px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:40px;right:-18px;width:112px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:112px;line-height:1;color:#f7c0da;opacity:.5;pointer-events:none;z-index:1;animation:driftY 11s ease-in-out infinite 1s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;bottom:-20px;right:56px;width:98px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:98px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;bottom:28px;left:-12px;width:126px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:126px;line-height:1;color:#f7c0da;opacity:.45;pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite .5s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:46%;left:5%;width:44px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:44px;line-height:1;color:#f5a8cb;opacity:.6;pointer-events:none;z-index:1;animation:sway 7s ease-in-out infinite">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:26%;right:8%;width:38px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:38px;line-height:1;color:#f7c0da;opacity:.55;pointer-events:none;z-index:1;animation:sway 9s ease-in-out infinite .8s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:8%;left:22%;width:56px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:56px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:1;animation:driftY 8s ease-in-out infinite .3s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:14%;right:24%;width:34px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:34px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 10s ease-in-out infinite .6s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:62%;left:11%;width:64px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:64px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:1;animation:driftY 12s ease-in-out infinite 1.2s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;bottom:12%;left:32%;width:40px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:40px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite 1.5s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:70%;right:12%;width:58px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:58px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite .9s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;bottom:34%;right:26%;width:32px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:32px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:1;animation:sway 11s ease-in-out infinite .4s">?</div>
+    <div class="deco" aria-hidden="true" style="position:absolute;top:40%;right:2%;width:70px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:70px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite 1.8s">?</div>
     <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 24px">
       <div style="text-align:center;margin-bottom:44px">
         
@@ -360,16 +369,16 @@
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><symbol id="waMark"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.581 0 11.94-5.359 11.943-11.893a11.821 11.821 0 0 0-3.416-8.452z"></path></symbol></defs></svg>
 
     <!-- floating whatsapp watermarks -->
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:-18px;left:-20px;width:150px;height:150px;color:var(--accent);opacity:.5;transform:rotate(-12deg);pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:36px;right:-16px;width:112px;height:112px;color:var(--accent);opacity:.5;transform:rotate(10deg);pointer-events:none;z-index:1;animation:driftY 11s ease-in-out infinite 1s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:-14px;right:52px;width:98px;height:98px;color:var(--accent);opacity:.5;transform:rotate(-8deg);pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:24px;left:-10px;width:126px;height:126px;color:var(--accent);opacity:.45;transform:rotate(8deg);pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite .5s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:14%;left:22%;width:56px;height:56px;color:var(--accent);opacity:.42;transform:rotate(-6deg);pointer-events:none;z-index:1;animation:driftY 8s ease-in-out infinite .3s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:18%;right:24%;width:40px;height:40px;color:var(--accent);opacity:.5;transform:rotate(8deg);pointer-events:none;z-index:1;animation:sway 10s ease-in-out infinite .6s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:16%;left:30%;width:44px;height:44px;color:var(--accent);opacity:.5;transform:rotate(-4deg);pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite 1.5s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:20%;right:28%;width:58px;height:58px;color:var(--accent);opacity:.42;transform:rotate(6deg);pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite .9s"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:46%;left:6%;width:64px;height:64px;color:var(--accent);opacity:.4;transform:rotate(6deg);pointer-events:none;z-index:1;animation:sway 7s ease-in-out infinite"><use href="#waMark"></use></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:44%;right:5%;width:70px;height:70px;color:var(--accent);opacity:.4;transform:rotate(-6deg);pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite 1.8s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:-18px;left:-20px;width:150px;height:150px;color:var(--accent);opacity:.5;transform:rotate(-12deg);pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:36px;right:-16px;width:112px;height:112px;color:var(--accent);opacity:.5;transform:rotate(10deg);pointer-events:none;z-index:1;animation:driftY 11s ease-in-out infinite 1s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:-14px;right:52px;width:98px;height:98px;color:var(--accent);opacity:.5;transform:rotate(-8deg);pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:24px;left:-10px;width:126px;height:126px;color:var(--accent);opacity:.45;transform:rotate(8deg);pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite .5s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:14%;left:22%;width:56px;height:56px;color:var(--accent);opacity:.42;transform:rotate(-6deg);pointer-events:none;z-index:1;animation:driftY 8s ease-in-out infinite .3s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:18%;right:24%;width:40px;height:40px;color:var(--accent);opacity:.5;transform:rotate(8deg);pointer-events:none;z-index:1;animation:sway 10s ease-in-out infinite .6s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:16%;left:30%;width:44px;height:44px;color:var(--accent);opacity:.5;transform:rotate(-4deg);pointer-events:none;z-index:1;animation:sway 8s ease-in-out infinite 1.5s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:20%;right:28%;width:58px;height:58px;color:var(--accent);opacity:.42;transform:rotate(6deg);pointer-events:none;z-index:1;animation:driftY 9s ease-in-out infinite .9s"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:46%;left:6%;width:64px;height:64px;color:var(--accent);opacity:.4;transform:rotate(6deg);pointer-events:none;z-index:1;animation:sway 7s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg class="deco" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:44%;right:5%;width:70px;height:70px;color:var(--accent);opacity:.4;transform:rotate(-6deg);pointer-events:none;z-index:1;animation:driftY 10s ease-in-out infinite 1.8s"><use href="#waMark"></use></svg>
 
     <div style="position:relative;z-index:2;max-width:640px;margin:0 auto;padding:0 24px">
       <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,40px);letter-spacing:-0.01em;color:var(--c-text);text-wrap:balance">Máte dotaz ? Napište mi</h2>
