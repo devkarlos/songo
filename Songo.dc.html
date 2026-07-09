@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{margin:0;--accent:#ef6a4a;--accent-dark:#db5236;--soft:#ffe7df;--ring:#ffe2d6;--line:#ffd6c8;--track:#f6ddd1;--shadow:225,110,85;--ambient:150,95,75;--page-bg:#fdf7f2;--band-bg:#fbeee8;--surface:#f1e6df;--header-bg:246,241,233;--grad-1:#fff0e8;--grad-2:#ffe0d3;--photo-1:#fdeae0;--photo-2:#f7e0d4;--sel:#ffd4c4;--card-border:#f1e3da;--c-text:#2a2623;--c-soft:#6e655d;--c-muted:#9c948b;--c-mid:#46403a;--c-faint:#aaa097;--c-card:#ffffff;--c-onaccent:#fffaf6;background:var(--page-bg)}
+  section{scroll-margin-top:88px}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  @keyframes sway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+  @keyframes driftY{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+  @keyframes voiceBar{0%,100%{transform:scaleY(.38)}50%{transform:scaleY(1)}}
+  .flower{transform-origin:center}
+  ::selection{background:var(--sel)}
+</style>
+</helmet>
+
+<div style="{{ themeStyle }}">
+  <div style="font-family:'Nunito',sans-serif;color:var(--c-text);background:var(--page-bg);min-height:100vh;-webkit-font-smoothing:antialiased">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(var(--header-bg),0.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface)">
+    <div style="max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between">
+      <a href="#top" style="display:flex;align-items:center;gap:9px;text-decoration:none">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block;box-shadow:0 0 0 4px var(--ring)"></span>
+        <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:23px;letter-spacing:-0.01em;color:var(--c-text)">Songo</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:30px">
+        <a href="#how" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Jak to funguje</a>
+        <a href="#samples" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ukázky</a>
+        <a href="#pricing" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Ceník</a>
+        <a href="#faq" style="font-size:15px;font-weight:600;color:var(--c-soft);text-decoration:none">Časté dotazy</a>
+        <a href="#pricing" style="display:inline-flex;align-items:center;background:var(--accent);color:var(--c-onaccent);padding:11px 20px;border-radius:999px;font-family:'Quicksand',sans-serif;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 8px 20px -10px rgba(var(--shadow),.55)" style-hover="background:var(--accent-dark)">Vytvořit píseň</a>
+      </nav>
+    </div>
+  </header>
+
+  <a id="top"></a>
+
+  <!-- ============ HERO A — centered & serene ============ -->
+  <sc-if value="{{ isA }}" hint-placeholder-val="{{ true }}">
+  <section style="padding:84px 0 52px">
+    <div style="max-width:780px;margin:0 auto;padding:0 24px;text-align:center">
+      
+      <h1 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px,6.2vw,66px);line-height:1.06;letter-spacing:-0.02em;color:var(--c-text);text-wrap:balance">Píseň pro ty,<br>které milujete.</h1>
+      <p style="margin:24px auto 0;max-width:560px;font-size:19px;line-height:1.65;color:var(--c-soft);text-wrap:pretty">Řekněte nám svůj příběh. Naši textaři s pomocí AI vytvoří originální píseň ze srdce — doručíme ji do 24 hodin, připravenou k darování.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px">
+        <a href="#pricing" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--c-onaccent);padding:16px 30px;border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:17px;text-decoration:none;box-shadow:0 12px 26px -10px rgba(var(--shadow),.5)" style-hover="background:var(--accent-dark)">Vytvořit píseň</a>
+        <a href="#samples" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--c-text);padding:15px 28px;border:1px solid var(--surface);border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:17px;text-decoration:none" style-hover="background:var(--c-card)">Poslechnout ukázku</a>
+      </div>
+      
+
+      <!-- floating mini player -->
+      <div style="display:flex;align-items:center;gap:16px;max-width:430px;margin:48px auto 0;background:var(--c-card);border:1px solid var(--surface);border-radius:20px;padding:16px 18px;box-shadow:0 22px 40px -24px rgba(var(--ambient),.4);animation:floaty 5.5s ease-in-out infinite;text-align:left">
+        <a href="#samples" style="flex:none;width:46px;height:46px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;text-decoration:none">
+          <span style="width:0;height:0;border-left:13px solid var(--c-onaccent);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px"></span>
+        </a>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:3px">Ukázka</div>
+          <div style="font-family:'Quicksand';font-weight:600;font-size:16px;color:var(--c-text)">Pro babičku Růženu — 80. narozeniny</div>
+          <div style="margin-top:9px;height:4px;border-radius:4px;background:var(--track);position:relative">
+            <div style="width:38%;height:100%;border-radius:4px;background:var(--accent)"></div>
+            <div style="position:absolute;left:38%;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--c-card)"></div>
+          </div>
+        </div>
+        <div style="flex:none;font-size:13px;color:var(--c-muted);font-weight:600">2:14</div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ HERO B — split editorial ============ -->
+  <sc-if value="{{ isB }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:60px 0 56px">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
+      <div>
+        
+        <h1 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(38px,4.6vw,58px);line-height:1.07;letter-spacing:-0.02em;color:var(--c-text);text-wrap:balance">Proměňte svůj příběh v píseň, na kterou nezapomenou.</h1>
+        <p style="margin:22px 0 0;max-width:460px;font-size:19px;line-height:1.65;color:var(--c-soft);text-wrap:pretty">Skutečná originální píseň z vašich vzpomínek — k narozeninám, výročí, nebo jen abyste řekli, co se těžko říká. Doručení do 24 hodin.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px">
+          <a href="#pricing" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--c-onaccent);padding:16px 30px;border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:17px;text-decoration:none;box-shadow:0 12px 26px -10px rgba(var(--shadow),.5)" style-hover="background:var(--accent-dark)">Vytvořit píseň</a>
+          <a href="#samples" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--c-text);padding:15px 28px;border:1px solid var(--surface);border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:17px;text-decoration:none" style-hover="background:var(--c-card)">Poslechnout ukázku</a>
+        </div>
+        
+      </div>
+      <div style="position:relative">
+        <div style="aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:repeating-linear-gradient(135deg,var(--photo-1),var(--photo-1) 11px,var(--photo-2) 11px,var(--photo-2) 22px);display:flex;align-items:center;justify-content:center;border:1px solid var(--card-border)">
+          <span style="font-family:'Nunito';font-size:13px;color:var(--c-muted);background:var(--page-bg);padding:7px 12px;border-radius:8px;font-weight:600">fotka — vřelý, opravdový okamžik</span>
+        </div>
+        <div style="position:absolute;left:-14px;bottom:22px;display:flex;align-items:center;gap:13px;background:var(--c-card);border:1px solid var(--surface);border-radius:18px;padding:13px 16px;box-shadow:0 22px 40px -22px rgba(var(--ambient),.45);max-width:280px">
+          <a href="#samples" style="flex:none;width:42px;height:42px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;text-decoration:none">
+            <span style="width:0;height:0;border-left:12px solid var(--c-onaccent);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px"></span>
+          </a>
+          <div style="min-width:0">
+            <div style="font-family:'Quicksand';font-weight:600;font-size:15px;color:var(--c-text)">Deset let, ty a já</div>
+            <div style="font-size:13px;color:var(--c-muted);font-weight:600">Výročí · 2:48</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ HERO C — warm card ============ -->
+  <sc-if value="{{ isC }}" hint-placeholder-val="{{ false }}">
+  <section style="padding:14px 0 44px">
+      <div ref="{{ cardRef }}" style="position:relative;margin:0 22px;border:1px solid var(--card-border);border-radius:34px;background:var(--grad-1);min-height:calc(100svh - 104px);display:flex;align-items:center;justify-content:center;padding:clamp(40px,7vw,80px) 28px;box-shadow:0 30px 60px -40px rgba(225,120,95,.4);overflow:hidden;will-change:margin,border-radius">
+
+        <!-- floral decorations -->
+        <div class="flower" aria-hidden="true" style="position:absolute;top:-30px;left:-18px;width:150px;opacity:.55;animation:driftY 9s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower" aria-hidden="true" style="position:absolute;top:34px;right:-26px;width:112px;opacity:.5;animation:driftY 11s ease-in-out infinite 1s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+        <div class="flower" aria-hidden="true" style="position:absolute;bottom:-32px;right:64px;width:98px;opacity:.5;animation:sway 8s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower" aria-hidden="true" style="position:absolute;bottom:36px;left:-16px;width:126px;opacity:.45;animation:driftY 10s ease-in-out infinite .5s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+        <div class="flower" aria-hidden="true" style="position:absolute;top:47%;left:6%;width:44px;opacity:.6;animation:sway 7s ease-in-out infinite"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f5a8cb"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#f6c75e"></circle></svg></div>
+        <div class="flower" aria-hidden="true" style="position:absolute;top:28%;right:9%;width:38px;opacity:.55;animation:sway 9s ease-in-out infinite .8s"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><g fill="#f7c0da"><ellipse cx="30" cy="15" rx="7" ry="11"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(72 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(144 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(216 30 30)"></ellipse><ellipse cx="30" cy="15" rx="7" ry="11" transform="rotate(288 30 30)"></ellipse></g><circle cx="30" cy="30" r="8" fill="#e0457f"></circle></svg></div>
+
+        <div style="position:relative;z-index:1;max-width:760px;text-align:center">
+        
+        <h1 style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:clamp(40px,6vw,68px);line-height:1.05;letter-spacing:-0.02em;color:var(--c-text);text-wrap:balance;max-width:760px;margin:0 auto">Některé city se lépe zpívají.</h1>
+        
+
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px">Vytvoříme originální píseň z vašeho příběhu.<br>Hotovo od 12 hodin.</div>
+
+        <!-- social proof -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px">
+          <div style="display:flex">
+            <span style="width:34px;height:34px;border-radius:50%;background:#f7c0da;border:2px solid var(--c-card);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;color:#a82e62">A</span>
+            <span style="width:34px;height:34px;border-radius:50%;background:#f6c75e;border:2px solid var(--c-card);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;color:#8a6410;margin-left:-11px">E</span>
+            <span style="width:34px;height:34px;border-radius:50%;background:#f5a8cb;border:2px solid var(--c-card);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;color:#a82e62;margin-left:-11px">K</span>
+            <span style="width:34px;height:34px;border-radius:50%;background:#fbd0e2;border:2px solid var(--c-card);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;color:#b3346a;margin-left:-11px">M</span>
+          </div>
+          <div style="text-align:left">
+            <div style="color:var(--accent);font-size:13px;letter-spacing:2px;line-height:1">★★★★★</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how" data-screen-label="Jak to funguje" style="padding:64px 0;background:var(--page-bg)">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+      <div style="text-align:center;max-width:600px;margin:0 auto 50px">
+        
+        <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);letter-spacing:-0.01em;color:var(--c-text)">Jak to funguje</h2>
+      </div>
+      <!-- Simple -->
+      <sc-if value="{{ howSimple }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+          <div style="text-align:center">
+            <div style="width:52px;height:52px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-weight:700;font-size:20px;color:var(--accent);margin:0 auto 20px">{{ step.num }}</div>
+            <h3 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:21px;color:var(--c-text);margin-bottom:10px">{{ step.title }}</h3>
+            <p style="font-size:16px;line-height:1.65;color:var(--c-soft);max-width:300px;margin:0 auto">{{ step.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <!-- Editorial -->
+      <sc-if value="{{ howEditorial }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:52px">
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+          <div style="border-top:2px solid var(--line);padding-top:24px">
+            <div style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:50px;line-height:1;color:var(--accent);letter-spacing:-0.02em">{{ step.num }}</div>
+            <h3 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:22px;color:var(--c-text);margin:18px 0 10px">{{ step.title }}</h3>
+            <p style="font-size:16px;line-height:1.7;color:var(--c-soft)">{{ step.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <!-- Timeline -->
+      <sc-if value="{{ howTimeline }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto">
+        <div>
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+          <div style="display:flex;gap:24px">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--c-onaccent);display:flex;align-items:center;justify-content:center;font-family:'Quicksand';font-weight:700;font-size:17px;box-shadow:0 8px 18px -8px rgba(var(--shadow),.6)">{{ step.num }}</div>
+              <sc-if value="{{ step.notLast }}" hint-placeholder-val="{{ true }}">
+                <div style="width:2px;flex:1;min-height:32px;background:var(--line);margin:6px 0"></div>
+              </sc-if>
+            </div>
+            <div style="padding-bottom:30px">
+              <h3 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:21px;color:var(--c-text);margin-bottom:8px">{{ step.title }}</h3>
+              <p style="font-size:16px;line-height:1.7;color:var(--c-soft)">{{ step.text }}</p>
+            </div>
+          </div>
+        </sc-for>
+        </div>
+        <div style="position:relative">
+          <div style="aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:repeating-linear-gradient(135deg,var(--photo-1),var(--photo-1) 11px,var(--photo-2) 11px,var(--photo-2) 22px);border:1px solid var(--card-border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:0 22px 44px -28px rgba(var(--ambient),.4)">
+            <span style="width:64px;height:64px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 28px -10px rgba(var(--shadow),.55)">
+              <span style="width:0;height:0;border-left:18px solid var(--c-onaccent);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px"></span>
+            </span>
+            <span style="font-family:'Nunito';font-size:13px;color:var(--c-muted);background:var(--c-card);padding:6px 12px;border-radius:8px;font-weight:600">YouTube video — jak vzniká píseň</span>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- Cards (original) -->
+      <sc-if value="{{ howCards }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+          <div style="background:var(--c-card);border:1px solid var(--surface);border-radius:22px;padding:32px 28px;box-shadow:0 14px 30px -24px rgba(var(--ambient),.3)">
+            <div style="width:46px;height:46px;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'Quicksand';font-weight:700;font-size:18px;color:var(--accent);margin-bottom:20px">{{ step.num }}</div>
+            <h3 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:21px;color:var(--c-text);margin-bottom:10px">{{ step.title }}</h3>
+            <p style="font-size:16px;line-height:1.65;color:var(--c-soft)">{{ step.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ============ SAMPLES ============ -->
+  <section id="samples" data-screen-label="Ukázky" style="padding:64px 0;background:var(--page-bg)">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+      <div style="text-align:center;max-width:600px;margin:0 auto 48px">
+        
+        <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);letter-spacing:-0.01em;color:var(--c-text)">Poslechněte si, jak zní Songo.</h2>
+
+        <!-- voice waveform -->
+        <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;gap:3px;height:66px;max-width:460px;margin:26px auto 0">
+          <sc-for list="{{ voiceBars }}" as="bar" hint-placeholder-count="60">
+            <span style="flex:none;width:3px;border-radius:3px;background:var(--accent);height:{{ bar.h }}%;opacity:{{ bar.op }};transform-origin:center;animation:voiceBar {{ bar.dur }}s ease-in-out infinite {{ bar.delay }}s"></span>
+          </sc-for>
+        </div>
+
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <sc-for list="{{ sampleCards }}" as="card" hint-placeholder-count="6">
+          <div style="background:var(--c-card);border:1px solid var(--surface);border-radius:20px;padding:20px 22px;box-shadow:0 14px 30px -26px rgba(var(--ambient),.3)">
+            <div style="display:flex;align-items:center;gap:15px">
+              <div aria-hidden="true" style="flex:none;width:54px;height:54px;border-radius:14px;background:repeating-linear-gradient(135deg,var(--photo-1),var(--photo-1) 8px,var(--photo-2) 8px,var(--photo-2) 16px);border:1px solid var(--card-border)"></div>
+              <button onClick="{{ card.onToggle }}" style="flex:none;width:48px;height:48px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(var(--shadow),.6)" style-hover="background:var(--accent-dark)">
+                <sc-if value="{{ card.showPlay }}" hint-placeholder-val="{{ true }}">
+                  <span style="width:0;height:0;border-left:14px solid var(--c-onaccent);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px"></span>
+                </sc-if>
+                <sc-if value="{{ card.isPlaying }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:flex;gap:4px"><span style="width:4px;height:16px;background:var(--c-onaccent);border-radius:1px"></span><span style="width:4px;height:16px;background:var(--c-onaccent);border-radius:1px"></span></span>
+                </sc-if>
+              </button>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:18px;color:var(--c-text)">{{ card.title }}</div>
+                <div style="font-size:14px;color:var(--c-muted);font-weight:600;margin-top:2px">{{ card.occasion }} · {{ card.genre }}</div>
+              </div>
+              <div style="flex:none;font-size:13.5px;color:var(--c-muted);font-weight:700;font-variant-numeric:tabular-nums">{{ card.timeLabel }}</div>
+            </div>
+            <div style="margin-top:16px">{{ card.waveform }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing" data-screen-label="Ceník" style="padding:64px 0;background:var(--band-bg)">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+      <div style="text-align:center;max-width:560px;margin:0 auto 44px">
+        
+        <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);letter-spacing:-0.01em;color:var(--c-text)">Vyberte si balíček, který vám sedí.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;max-width:1010px;margin:0 auto">
+        <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+
+          <!-- Popular -->
+          <sc-if value="{{ t.popular }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;background:var(--c-card);border:2px solid var(--accent);border-radius:26px;padding:36px 30px 32px;box-shadow:0 30px 60px -34px rgba(var(--shadow),.45);transform:translateY(-22px);display:flex;flex-direction:column">
+            <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--c-onaccent);font-family:'Quicksand';font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 16px;border-radius:999px;box-shadow:0 8px 18px -8px rgba(var(--shadow),.6);white-space:nowrap">Nejoblíbenější</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin-top:12px">
+              <span style="font-family:'Quicksand';font-weight:700;font-size:46px;color:var(--c-text);letter-spacing:-0.02em;line-height:1">{{ t.price }}</span>
+              <span style="font-size:15px;color:var(--c-muted);font-weight:600">/ píseň</span>
+            </div>
+            <div style="height:1px;background:var(--surface);margin:22px 0"></div>
+            <div style="display:flex;flex-direction:column;gap:12px;flex:1">
+              <sc-for list="{{ t.features }}" as="f" hint-placeholder-count="5">
+                <div style="display:flex;align-items:flex-start;gap:11px">
+                  <span style="flex:none;width:21px;height:21px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:12px;font-weight:700;margin-top:1px">✓</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--c-mid)">{{ f }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a href="{{ t.link }}" style="display:flex;align-items:center;justify-content:center;margin-top:28px;background:var(--accent);color:var(--c-onaccent);padding:15px;border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 12px 26px -10px rgba(var(--shadow),.5)" style-hover="background:var(--accent-dark)">Vytvořit píseň</a>
+          </div>
+          </sc-if>
+
+          <!-- Standard -->
+          <sc-if value="{{ t.notPopular }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;background:var(--c-card);border:1px solid var(--card-border);border-radius:26px;padding:36px 30px 32px;box-shadow:0 18px 40px -30px rgba(var(--ambient),.35);display:flex;flex-direction:column">
+            <div style="display:flex;align-items:baseline;gap:7px;margin-top:12px">
+              <span style="font-family:'Quicksand';font-weight:700;font-size:46px;color:var(--c-text);letter-spacing:-0.02em;line-height:1">{{ t.price }}</span>
+              <span style="font-size:15px;color:var(--c-muted);font-weight:600">/ píseň</span>
+            </div>
+            <div style="height:1px;background:var(--surface);margin:22px 0"></div>
+            <div style="display:flex;flex-direction:column;gap:12px;flex:1">
+              <sc-for list="{{ t.features }}" as="f" hint-placeholder-count="5">
+                <div style="display:flex;align-items:flex-start;gap:11px">
+                  <span style="flex:none;width:21px;height:21px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:12px;font-weight:700;margin-top:1px">✓</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--c-mid)">{{ f }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a href="{{ t.link }}" style="display:flex;align-items:center;justify-content:center;margin-top:28px;background:transparent;color:var(--c-text);padding:14px;border:1px solid var(--surface);border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:16px;text-decoration:none" style-hover="background:var(--band-bg)">Vytvořit píseň</a>
+          </div>
+          </sc-if>
+
+        </sc-for>
+      </div>
+      <div style="text-align:center;margin-top:32px;font-size:14px;color:var(--c-muted);font-weight:600">Záruka vrácení peněz · Úpravy zdarma u každého balíčku</div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" data-screen-label="Časté dotazy" style="position:relative;overflow:hidden;padding:64px 0;background:var(--page-bg)">
+    <!-- floating question-mark watermarks -->
+    <div aria-hidden="true" style="position:absolute;top:-24px;left:-14px;width:150px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:150px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:0;animation:driftY 9s ease-in-out infinite">?</div>
+    <div aria-hidden="true" style="position:absolute;top:40px;right:-18px;width:112px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:112px;line-height:1;color:#f7c0da;opacity:.5;pointer-events:none;z-index:0;animation:driftY 11s ease-in-out infinite 1s">?</div>
+    <div aria-hidden="true" style="position:absolute;bottom:-20px;right:56px;width:98px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:98px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:0;animation:sway 8s ease-in-out infinite">?</div>
+    <div aria-hidden="true" style="position:absolute;bottom:28px;left:-12px;width:126px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:126px;line-height:1;color:#f7c0da;opacity:.45;pointer-events:none;z-index:0;animation:driftY 10s ease-in-out infinite .5s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:46%;left:5%;width:44px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:44px;line-height:1;color:#f5a8cb;opacity:.6;pointer-events:none;z-index:0;animation:sway 7s ease-in-out infinite">?</div>
+    <div aria-hidden="true" style="position:absolute;top:26%;right:8%;width:38px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:38px;line-height:1;color:#f7c0da;opacity:.55;pointer-events:none;z-index:0;animation:sway 9s ease-in-out infinite .8s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:8%;left:22%;width:56px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:56px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:0;animation:driftY 8s ease-in-out infinite .3s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:14%;right:24%;width:34px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:34px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:0;animation:sway 10s ease-in-out infinite .6s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:62%;left:11%;width:64px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:64px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:0;animation:driftY 12s ease-in-out infinite 1.2s">?</div>
+    <div aria-hidden="true" style="position:absolute;bottom:12%;left:32%;width:40px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:40px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:0;animation:sway 8s ease-in-out infinite 1.5s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:70%;right:12%;width:58px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:58px;line-height:1;color:#f7c0da;opacity:.42;pointer-events:none;z-index:0;animation:driftY 9s ease-in-out infinite .9s">?</div>
+    <div aria-hidden="true" style="position:absolute;bottom:34%;right:26%;width:32px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:32px;line-height:1;color:#f5a8cb;opacity:.5;pointer-events:none;z-index:0;animation:sway 11s ease-in-out infinite .4s">?</div>
+    <div aria-hidden="true" style="position:absolute;top:40%;right:2%;width:70px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:70px;line-height:1;color:#f7c0da;opacity:.4;pointer-events:none;z-index:0;animation:driftY 10s ease-in-out infinite 1.8s">?</div>
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 24px">
+      <div style="text-align:center;margin-bottom:44px">
+        
+        <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);letter-spacing:-0.01em;color:var(--c-text)">Odpovědi na vaše otázky.</h2>
+      </div>
+      <div style="background:var(--c-card);border:1px solid var(--surface);border-radius:22px;padding:6px 28px;box-shadow:0 14px 30px -26px rgba(var(--ambient),.3)">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+          <div style="border-bottom:{{ f.border }}">
+            <button onClick="{{ f.onToggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;cursor:pointer;padding:22px 0;text-align:left">
+              <span style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:18px;color:var(--c-text)">{{ f.q }}</span>
+              <span style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:18px;font-weight:600;line-height:1;transition:transform .3s ease;transform:{{ f.iconTransform }}">{{ f.sign }}</span>
+            </button>
+            <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1)">
+              <div style="overflow:hidden;min-height:0">
+                <p style="font-size:16px;line-height:1.7;color:var(--c-soft);padding:0 0 24px;margin-top:-4px;max-width:620px">{{ f.a }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section style="position:relative;overflow:hidden;padding:clamp(48px,7vw,80px) 0;background:linear-gradient(180deg,var(--page-bg) 0%,var(--grad-1) 26%,var(--grad-1) 74%,var(--band-bg) 100%);text-align:center">
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><symbol id="waMark"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.581 0 11.94-5.359 11.943-11.893a11.821 11.821 0 0 0-3.416-8.452z"></path></symbol></defs></svg>
+
+    <!-- floating whatsapp watermarks -->
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:-18px;left:-20px;width:150px;height:150px;color:var(--accent);opacity:.5;transform:rotate(-12deg);pointer-events:none;z-index:0;animation:driftY 9s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:36px;right:-16px;width:112px;height:112px;color:var(--accent);opacity:.5;transform:rotate(10deg);pointer-events:none;z-index:0;animation:driftY 11s ease-in-out infinite 1s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:-14px;right:52px;width:98px;height:98px;color:var(--accent);opacity:.5;transform:rotate(-8deg);pointer-events:none;z-index:0;animation:sway 8s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:24px;left:-10px;width:126px;height:126px;color:var(--accent);opacity:.45;transform:rotate(8deg);pointer-events:none;z-index:0;animation:driftY 10s ease-in-out infinite .5s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:14%;left:22%;width:56px;height:56px;color:var(--accent);opacity:.42;transform:rotate(-6deg);pointer-events:none;z-index:0;animation:driftY 8s ease-in-out infinite .3s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:18%;right:24%;width:40px;height:40px;color:var(--accent);opacity:.5;transform:rotate(8deg);pointer-events:none;z-index:0;animation:sway 10s ease-in-out infinite .6s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:16%;left:30%;width:44px;height:44px;color:var(--accent);opacity:.5;transform:rotate(-4deg);pointer-events:none;z-index:0;animation:sway 8s ease-in-out infinite 1.5s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;bottom:20%;right:28%;width:58px;height:58px;color:var(--accent);opacity:.42;transform:rotate(6deg);pointer-events:none;z-index:0;animation:driftY 9s ease-in-out infinite .9s"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:46%;left:6%;width:64px;height:64px;color:var(--accent);opacity:.4;transform:rotate(6deg);pointer-events:none;z-index:0;animation:sway 7s ease-in-out infinite"><use href="#waMark"></use></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;top:44%;right:5%;width:70px;height:70px;color:var(--accent);opacity:.4;transform:rotate(-6deg);pointer-events:none;z-index:0;animation:driftY 10s ease-in-out infinite 1.8s"><use href="#waMark"></use></svg>
+
+    <div style="position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 24px">
+      <h2 style="font-family:'Quicksand',sans-serif;font-weight:600;font-size:clamp(28px,4vw,40px);letter-spacing:-0.01em;color:var(--c-text);text-wrap:balance">Máte dotaz ? Napište mi</h2>
+      <p style="margin:14px auto 0;max-width:440px;font-size:18px;line-height:1.6;color:var(--c-soft)">Napište na <b>Whatsapp,&nbsp;</b>probereme Váš příběh a rádi poradíme i s výběrem</p>
+      <a href="https://wa.me/420777123456" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:11px;margin-top:28px;background:var(--accent);color:var(--c-onaccent);padding:16px 32px;border-radius:999px;font-family:'Quicksand';font-weight:600;font-size:18px;text-decoration:none;box-shadow:0 12px 26px -10px rgba(var(--shadow),.5)" style-hover="background:var(--accent-dark)"><span style="font-size:19px">☎</span>+420 777 123 456</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:var(--band-bg)">
+    <div style="max-width:1120px;margin:0 auto;padding:40px 24px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start">
+      <div style="max-width:280px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+          <span style="width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block;box-shadow:0 0 0 4px var(--ring)"></span>
+          <span style="font-family:'Quicksand',sans-serif;font-weight:700;font-size:21px;color:var(--c-text)">Songo</span>
+        </div>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--c-muted)">Osobní písně napsané z vašeho příběhu textaři s pomocí AI. Tvořeno s láskou.</p>
+      </div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'Quicksand';font-weight:600;font-size:14px;color:var(--c-mid);margin-bottom:2px">Objevit</div>
+          <a href="#how" style="font-size:14.5px;color:var(--c-muted);text-decoration:none;font-weight:600">Jak to funguje</a>
+          <a href="#samples" style="font-size:14.5px;color:var(--c-muted);text-decoration:none;font-weight:600">Ukázky</a>
+          <a href="#pricing" style="font-size:14.5px;color:var(--c-muted);text-decoration:none;font-weight:600">Ceník</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'Quicksand';font-weight:600;font-size:14px;color:var(--c-mid);margin-bottom:2px">Kontakt</div>
+          <a href="mailto:hello@songo.cz" style="font-size:14.5px;color:var(--c-muted);text-decoration:none;font-weight:600">hello@songo.cz</a>
+          <a href="#faq" style="font-size:14.5px;color:var(--c-muted);text-decoration:none;font-weight:600">Časté dotazy</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--card-border);padding:18px 24px;text-align:center;font-size:13px;color:var(--c-faint)">© 2026 Songo · Tvořeno s láskou v Praze</div>
+  </footer>
+
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;colorTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;rose&quot;,&quot;options&quot;:[&quot;coral&quot;,&quot;purple&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;teal&quot;,&quot;rose&quot;,&quot;ink&quot;,&quot;navy&quot;,&quot;wine&quot;,&quot;forest&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;darkBg&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;howLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;timeline&quot;,&quot;options&quot;:[&quot;simple&quot;,&quot;editorial&quot;,&quot;timeline&quot;,&quot;cards&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { hero: 'C', activeId: null, progress: 0, running: false, openFaq: -1 };
+
+  cardRef = React.createRef();
+
+  componentDidMount() {
+    const tick = () => {
+      const el = this.cardRef.current;
+      if (el) {
+        const top = el.getBoundingClientRect().top;
+        const vh = window.innerHeight || 800;
+        const p = Math.min(1, Math.max(0, (14 - top) / (vh * 0.30)));
+        if (this._lastP === undefined || Math.abs(p - this._lastP) > 0.004) {
+          this._lastP = p;
+          const g = (22 * (1 - p)).toFixed(1);
+          el.style.marginLeft = g + 'px';
+          el.style.marginRight = g + 'px';
+          el.style.borderRadius = (34 * (1 - p)).toFixed(1) + 'px';
+          el.style.borderColor = p > 0.9 ? 'transparent' : 'var(--card-border)';
+        }
+      }
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    this.stopSource();
+    if (this._ctx) { try { this._ctx.close(); } catch (e) {} }
+    if (this._raf) cancelAnimationFrame(this._raf);
+  }
+
+  durSec(id) {
+    const map = { 1: 134, 2: 168, 3: 118, 4: 142, 5: 182, 6: 130 };
+    return map[id] || 130;
+  }
+
+  ensureCtx() {
+    if (!this._ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this._ctx = new AC();
+    }
+    if (this._ctx.state === 'suspended') this._ctx.resume();
+    return this._ctx;
+  }
+
+  buildBuffer(id) {
+    if (!this._buffers) this._buffers = {};
+    if (this._buffers[id]) return this._buffers[id];
+    const ctx = this._ctx;
+    const sr = ctx.sampleRate;
+    const notes = 16, noteDur = 0.6, L = notes * noteDur;
+    const len = Math.floor(L * sr);
+    const buf = ctx.createBuffer(1, len, sr);
+    const d = buf.getChannelData(0);
+    const roots = { 1: 220, 2: 196, 3: 261.63, 4: 293.66, 5: 174.61, 6: 246.94 };
+    const root = roots[id] || 220;
+    const major = [0, 2, 4, 5, 7, 9, 11];
+    const minor = [0, 2, 3, 5, 7, 8, 10];
+    const scale = (id % 2 === 0) ? minor : major;
+    const patterns = {
+      1: [0, 2, 4, 7, 9, 7, 4, 2, 0, 2, 4, 7, 9, 11, 9, 7],
+      2: [0, 3, 5, 7, 5, 3, 0, -2, 0, 3, 7, 10, 7, 5, 3, 0],
+      3: [0, 4, 7, 4, 2, 4, 0, -3, 5, 4, 2, 0, 2, 4, 7, 4],
+      4: [7, 4, 2, 0, 2, 4, 7, 9, 7, 4, 2, 0, -1, 0, 2, 4],
+      5: [0, 2, 3, 5, 3, 2, 0, -2, -4, -2, 0, 2, 3, 5, 7, 5],
+      6: [0, 2, 4, 5, 7, 5, 4, 2, 7, 5, 4, 2, 0, 2, 4, 5],
+    };
+    const pat = patterns[id] || patterns[1];
+    const semi = (deg) => {
+      const m = scale.length;
+      const oct = Math.floor(deg / m);
+      const idx = ((deg % m) + m) % m;
+      return scale[idx] + 12 * oct;
+    };
+    for (let i = 0; i < len; i++) {
+      const t = i / sr;
+      const env = 0.5 + 0.5 * Math.sin(2 * Math.PI * t / L - Math.PI / 2);
+      d[i] += 0.03 * env * Math.sin(2 * Math.PI * (root / 2) * t);
+    }
+    for (let n = 0; n < notes; n++) {
+      const f = root * Math.pow(2, semi(pat[n % pat.length]) / 12);
+      const startS = Math.floor(n * noteDur * sr);
+      const endS = Math.floor((n + 1) * noteDur * sr);
+      for (let i = startS; i < endS; i++) {
+        const t = (i - startS) / sr;
+        const atk = Math.min(t / 0.02, 1);
+        const dec = Math.exp(-3.2 * t / noteDur);
+        const env = atk * dec;
+        const w = Math.sin(2 * Math.PI * f * t) + 0.4 * Math.sin(2 * Math.PI * 2 * f * t) + 0.18 * Math.sin(2 * Math.PI * 3 * f * t);
+        d[i] += 0.14 * env * w;
+      }
+    }
+    const fade = Math.floor(0.02 * sr);
+    for (let i = 0; i < fade; i++) {
+      const g = i / fade;
+      d[i] *= g;
+      d[len - 1 - i] *= g;
+    }
+    let max = 0;
+    for (let i = 0; i < len; i++) max = Math.max(max, Math.abs(d[i]));
+    if (max > 0.9) { const k = 0.9 / max; for (let i = 0; i < len; i++) d[i] *= k; }
+    this._buffers[id] = buf;
+    return buf;
+  }
+
+  stopSource() {
+    if (this._src) { try { this._src.stop(); } catch (e) {} try { this._src.disconnect(); } catch (e) {} this._src = null; }
+    if (this._araf) { cancelAnimationFrame(this._araf); this._araf = null; }
+  }
+
+  runRaf() {
+    const step = () => {
+      if (!this._src) return;
+      const pos = this._startSong + (this._ctx.currentTime - this._startCtx);
+      if (pos >= this._dur) {
+        this.stopSource();
+        this.setState({ progress: 0, running: false, activeId: null });
+        return;
+      }
+      this.setState({ progress: pos / this._dur * 100 });
+      this._araf = requestAnimationFrame(step);
+    };
+    this._araf = requestAnimationFrame(step);
+  }
+
+  play(id, fromPct) {
+    const ctx = this.ensureCtx();
+    const buf = this.buildBuffer(id);
+    this.stopSource();
+    const dur = this.durSec(id);
+    const songSec = Math.max(0, Math.min(dur - 0.1, fromPct / 100 * dur));
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.loop = true;
+    const g = ctx.createGain();
+    g.gain.value = 0.9;
+    src.connect(g).connect(ctx.destination);
+    src.start(0, songSec % buf.duration);
+    this._src = src;
+    this._startCtx = ctx.currentTime;
+    this._startSong = songSec;
+    this._dur = dur;
+    this.setState({ activeId: id, running: true, progress: songSec / dur * 100 });
+    this.runRaf();
+  }
+
+  pause() {
+    this.stopSource();
+    this.setState({ running: false });
+  }
+
+  toggle(id) {
+    if (this.state.activeId === id) {
+      if (this.state.running) this.pause();
+      else this.play(id, this.state.progress);
+    } else {
+      this.play(id, 0);
+    }
+  }
+
+  seek(id, pct) {
+    this.play(id, Math.max(0, Math.min(100, pct)));
+  }
+
+  bars(seed) {
+    const arr = [];
+    for (let i = 0; i < 46; i++) {
+      const v = Math.abs(Math.sin(i * 0.7 + seed) * Math.cos(i * 0.29 + seed * 1.7));
+      arr.push(Math.round(5 + v * 23));
+    }
+    return arr;
+  }
+
+  faqToggle(i) { this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })); }
+
+  renderVals() {
+    const themes = {
+      coral:  { accent:'#ef6a4a', dark:'#db5236', soft:'#ffe7df', ring:'#ffe2d6', line:'#ffd6c8', track:'#f6ddd1', shadow:'225,110,85', ambient:'150,95,75', page:'#fdf7f2', band:'#fbeee8', surface:'#f1e6df', header:'246,241,233', g1:'#fff0e8', g2:'#ffe0d3', p1:'#fdeae0', p2:'#f7e0d4', sel:'#ffd4c4', card:'#f1e3da' },
+      purple: { accent:'#8b5cf6', dark:'#7c3aed', soft:'#ede9fe', ring:'#e9e3ff', line:'#ddd1ff', track:'#e7ddf6', shadow:'139,92,246', ambient:'96,75,140', page:'#faf8fe', band:'#f3eefb', surface:'#eae3f4', header:'241,238,251', g1:'#f4eeff', g2:'#e9def9', p1:'#efe6fc', p2:'#e3d4f4', sel:'#ddd0ff', card:'#ece5f4' },
+      blue:   { accent:'#3b82f6', dark:'#2563eb', soft:'#e0edff', ring:'#dbe8ff', line:'#cfe0ff', track:'#dde7f6', shadow:'59,130,246', ambient:'70,95,140', page:'#f6f9fe', band:'#ecf2fb', surface:'#e2e9f4', header:'236,242,251', g1:'#ecf3ff', g2:'#dbe8fd', p1:'#e6effc', p2:'#d4e3f4', sel:'#cfe0ff', card:'#e4ebf4' },
+      green:  { accent:'#1f9d63', dark:'#177a4c', soft:'#dcf3e7', ring:'#d4f0e0', line:'#c4ead4', track:'#ddf0e4', shadow:'31,157,99', ambient:'60,120,90', page:'#f5fcf8', band:'#ebf6ef', surface:'#e0efe6', header:'235,246,239', g1:'#ecf9f1', g2:'#dbf1e3', p1:'#e3f4e9', p2:'#d2ecd9', sel:'#c8ecd6', card:'#e2f0e8' },
+      teal:   { accent:'#0fae9b', dark:'#0c8a7b', soft:'#d3f4ef', ring:'#cbf0ea', line:'#b9ebe2', track:'#d6f0ec', shadow:'15,174,155', ambient:'40,120,112', page:'#f4fcfb', band:'#e8f6f4', surface:'#ddefec', header:'232,246,244', g1:'#e9f9f6', g2:'#d4f1ec', p1:'#ddf4ef', p2:'#cbece5', sel:'#bdeee6', card:'#dff0ed' },
+      rose:   { accent:'#e0457f', dark:'#c42f68', soft:'#fbe3ed', ring:'#fbdce8', line:'#f3d8e2', track:'#f0e2d8', shadow:'224,69,127', ambient:'150,100,90', page:'#fdf8f4', band:'#f8efe8', surface:'#efe6de', header:'253,248,244', g1:'#ffeef5', g2:'#ffe1ec', p1:'#f6e6dd', p2:'#efd9cd', sel:'#fcd0e6', card:'#efe5dd' },
+      ink:    { accent:'#262321', dark:'#000000', soft:'#e7e4e0', ring:'#e2ded9', line:'#dcd7d1', track:'#e4dfd9', shadow:'40,36,33', ambient:'40,36,33', page:'#f7f5f2', band:'#efece8', surface:'#e6e1db', header:'247,245,242', g1:'#f2efeb', g2:'#e6e1db', p1:'#eeeae5', p2:'#e2dcd5', sel:'#dcd6cf', card:'#e8e3dd' },
+      navy:   { accent:'#1e3a5f', dark:'#142a47', soft:'#dde6f0', ring:'#d6e1ee', line:'#cad8ea', track:'#dce4ef', shadow:'30,58,95', ambient:'40,60,90', page:'#f6f8fb', band:'#eaf0f7', surface:'#e0e7f0', header:'234,240,247', g1:'#eef3fa', g2:'#dde6f2', p1:'#e6edf6', p2:'#d6e0ee', sel:'#cdd9ea', card:'#e2e9f1' },
+      wine:   { accent:'#7a2540', dark:'#5e1a31', soft:'#f3dde5', ring:'#efd5df', line:'#ebcad7', track:'#f0dce4', shadow:'122,37,64', ambient:'110,50,70', page:'#fcf6f8', band:'#f7ebef', surface:'#f0e1e7', header:'247,235,239', g1:'#fdeef3', g2:'#f6dce5', p1:'#f9e6ec', p2:'#f1d4de', sel:'#f0d2dd', card:'#f1e2e8' },
+      forest: { accent:'#1f4636', dark:'#143228', soft:'#dcece4', ring:'#d4e8dd', line:'#c8e1d3', track:'#dceae2', shadow:'31,70,54', ambient:'45,85,68', page:'#f5faf7', band:'#eaf3ee', surface:'#e0ece6', header:'234,243,238', g1:'#ecf6f0', g2:'#dceee4', p1:'#e4f1ea', p2:'#d2e8dc', sel:'#cae6d6', card:'#e2ece7' },
+    };
+    const T = themes[this.props.colorTheme] || themes.coral;
+
+    const hexToRgb = (h) => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.slice(i,i+2),16)); };
+    const lum = (c) => (0.299*c[0] + 0.587*c[1] + 0.114*c[2]) / 255;
+    const mix = (a,b,t) => a.map((v,i) => Math.round(v + (b[i]-v)*t));
+    const toHex = (c) => '#' + c.map(v => Math.max(0,Math.min(255,v)).toString(16).padStart(2,'0')).join('');
+
+    const darkBg = !!this.props.darkBg;
+    let accent = T.accent, accentDark = T.dark;
+    if (darkBg) {
+      const rgb = hexToRgb(T.accent);
+      if (lum(rgb) < 0.42) {
+        accent = toHex(mix(rgb, [242,238,232], 0.62));
+        accentDark = toHex(mix(hexToRgb(accent), [18,15,13], 0.16));
+      }
+    }
+
+    let themeStyle = {
+      '--accent':accent,'--accent-dark':accentDark,'--soft':T.soft,'--ring':T.ring,'--line':T.line,
+      '--track':T.track,'--shadow':T.shadow,'--ambient':T.ambient,'--page-bg':T.page,'--band-bg':T.band,
+      '--surface':T.surface,'--header-bg':T.header,'--grad-1':T.g1,'--grad-2':T.g2,'--photo-1':T.p1,
+      '--photo-2':T.p2,'--sel':T.sel,'--card-border':T.card,
+      '--c-text':'#2a2623','--c-soft':'#6e655d','--c-muted':'#9c948b','--c-mid':'#46403a',
+      '--c-faint':'#aaa097','--c-card':'#ffffff','--c-onaccent':'#fffaf6',
+    };
+
+    if (darkBg) {
+      themeStyle = {
+        ...themeStyle,
+        '--page-bg':'#14110f','--band-bg':'#1b1714','--surface':'#322c27','--card-border':'#2a2521',
+        '--soft':'#26211d','--ring':'#2a2521','--line':'#322c27','--track':'#39322c',
+        '--header-bg':'20,17,15','--grad-1':'#1d1916','--grad-2':'#241f1a','--photo-1':'#221d1a','--photo-2':'#19150f',
+        '--sel':accentDark,
+        '--c-text':'#f4efe9','--c-soft':'#b9b1a8','--c-muted':'#8f877e','--c-mid':'#d8d0c8',
+        '--c-faint':'#6f6760','--c-card':'#1e1a17',
+        '--c-onaccent': lum(hexToRgb(accent)) > 0.6 ? '#14110f' : '#fffaf6',
+      };
+    }
+    const ACCENT = 'var(--accent)', MUTED = 'var(--track)';
+    const hero = this.state.hero;
+    const howLayout = this.props.howLayout || 'simple';
+
+    const samples = [
+      { id: 1, title: 'Pro babičku Růženu', occasion: '80. narozeniny', genre: 'Vřelý folk', duration: '2:14' },
+      { id: 2, title: 'Deset let, ty a já', occasion: 'Výročí', genre: 'Akustická balada', duration: '2:48' },
+      { id: 3, title: 'Tahle je pro Lea', occasion: 'Narozeniny', genre: 'Pohodový pop', duration: '1:58' },
+      { id: 4, title: 'Vítej, malá Mio', occasion: 'Narození miminka', genre: 'Něžná ukolébavka', duration: '2:22' },
+      { id: 5, title: 'Pro tátu, navždy', occasion: 'Na památku', genre: 'Tiché piano', duration: '3:02' },
+      { id: 6, title: 'Mé nejlepší kamarádce', occasion: 'Přátelství', genre: 'Indie folk', duration: '2:10' },
+    ];
+
+    const fmt = (sec) => {
+      const m = Math.floor(sec / 60);
+      const ss = Math.floor(sec % 60);
+      return m + ':' + String(ss).padStart(2, '0');
+    };
+    const sampleCards = samples.map(s => {
+      const isCurrent = this.state.activeId === s.id;
+      const isPlaying = isCurrent && this.state.running;
+      const prog = isCurrent ? this.state.progress : 0;
+      const dur = this.durSec(s.id);
+      const heights = this.bars(s.id);
+      const active = Math.floor(prog / 100 * heights.length);
+      const waveform = React.createElement('div',
+        {
+          onClick: (e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            this.seek(s.id, (e.clientX - r.left) / r.width * 100);
+          },
+          title: 'Klikněte pro přeskočení',
+          style: { display: 'flex', alignItems: 'center', gap: '3px', height: '36px', cursor: 'pointer' },
+        },
+        heights.map((h, i) => React.createElement('div', {
+          key: i,
+          style: {
+            flex: 1, minWidth: '2px', borderRadius: '2px', height: h + 'px',
+            background: i < active ? ACCENT : MUTED,
+            opacity: (isPlaying && i >= active && i < active + 2) ? 0.55 : 1,
+            transition: 'background .15s ease, opacity .15s ease',
+            pointerEvents: 'none',
+          },
+        }))
+      );
+      const timeLabel = isCurrent ? fmt(prog / 100 * dur) + ' / ' + s.duration : s.duration;
+      return { ...s, isPlaying, showPlay: !isPlaying, waveform, timeLabel, onToggle: () => this.toggle(s.id) };
+    });
+
+    const stepsRaw = [
+      { num: '01', title: 'Sdílejte příběh', text: 'Řekněte nám o té osobě a o tom okamžiku — jména, vzpomínky, vnitřní vtipy. Cokoli, co byste napsali do přání.' },
+      { num: '02', title: 'Vytvoříme píseň', text: 'Naši textaři vytvarují text a složí originální melodii ve stylu, který si vyberete.' },
+      { num: '03', title: 'Dostanete ji do 24 hodin', text: 'Poslechněte si ji, požádejte o úpravy a stáhněte si hotovou píseň. Úpravy jsou zdarma, dokud nebude přesně podle vás.' },
+    ];
+    const steps = stepsRaw.map((s, i) => ({ ...s, notLast: i < stepsRaw.length - 1 }));
+
+    const reviews = [
+      { quote: 'Rozplakala jsem se hned, jak se píseň spustila. Zachytili mou mámu způsobem, který bych nikdy nedokázala vyjádřit slovy.', name: 'Tereza H.', occ: 'K 70. narozeninám mámy', init: 'T' },
+      { quote: 'Dal jsem ji manželce k výročí. Jednoznačně nejlepší dárek, jaký jsem kdy dal.', name: 'Marek D.', occ: 'Píseň k výročí', init: 'M' },
+      { quote: 'Nějak měl text i naše malé vnitřní vtipy. Moje nejlepší kamarádka oněměla.', name: 'Sofia L.', occ: 'Píseň pro přátele', init: 'S' },
+    ];
+
+    const tiersRaw = [
+      { key: 'zaklad', name: 'Základ', price: '99 Kč', popular: false, tag: 'Píseň vytvořená AI — rychle, jednoduše a ze srdce.', features: [
+        'Originální text z vašeho příběhu',
+        'Melodie složená pomocí AI',
+        '1 hotová verze písně',
+        'Digitální doručení do 24 hodin',
+        'Soukromý odkaz k poslechu',
+      ] },
+      { key: 'oblibeny', name: 'Oblíbený', price: '199 Kč', popular: true, tag: 'Nejlepší poměr — studiový zvuk a vámi zvolený styl.', features: [
+        'Vše ze Základu',
+        'Nahrávka ve studiové kvalitě',
+        'Výběr žánru a nálady',
+        '2 kola úprav zdarma',
+        'Doručení do 24 hodin',
+        'Stažení v MP3',
+      ] },
+      { key: 'premium', name: 'Prémiový', price: '499 Kč', popular: false, tag: 'Doladěno textařem, expresně a bez kompromisů.', features: [
+        'Vše z Oblíbeného',
+        'Finální úpravy od textaře',
+        'Doručení do 24 hodin',
+        'Neomezené úpravy',
+        'Více aranží na výběr',
+        'Tištěná karta s textem',
+      ] },
+    ];
+    const tiers = tiersRaw.map(t => ({ ...t, notPopular: !t.popular, link: 'Objednavka.dc.html#' + t.key }));
+
+    const faqsRaw = [
+      { q: 'Jak to vlastně funguje?', a: 'Vyplníte krátký, přátelský dotazník o té osobě a příležitosti. Naši textaři promění váš příběh v originální text, složí melodii ve zvoleném stylu a nahrají ji — hotovou píseň pak dostanete do 24 hodin.' },
+      { q: 'Jak dlouho to trvá?', a: 'Hotovou píseň dostanete do 24 hodin od chvíle, kdy sdílíte svůj příběh.' },
+      { q: 'Můžu si vybrat styl nebo žánr?', a: 'Rozhodně. Folk, pop, klavírní balada, ukolébavka, indie — řekněte nám, jaký pocit chcete navodit, a my ho vystihneme.' },
+      { q: 'Co když budu chtít změny?', a: 'Úpravy jsou zdarma, dokud nebude píseň přesně podle vás. Vaše spokojenost je to hlavní.' },
+      { q: 'Co když nebudu spokojen(a)?', a: 'Pokud vás píseň nedojme, kryje vás naše záruka vrácení peněz. Žádný stres, žádné nepříjemné dohadování.' },
+    ];
+    const faqs = faqsRaw.map((f, i) => {
+      const isOpen = this.state.openFaq === i;
+      const isLast = i === faqsRaw.length - 1;
+      return { ...f, isOpen, border: isLast ? 'none' : '1px solid var(--surface)', sign: isOpen ? '\u2212' : '+', rows: isOpen ? '1fr' : '0fr', iconTransform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', onToggle: () => this.faqToggle(i) };
+    });
+
+    const sel = 'var(--accent)', selFg = '#fffaf6', off = 'transparent', offFg = '#6e655d';
+
+    const voiceN = 60;
+    const voiceBars = Array.from({ length: voiceN }, (_, i) => {
+      const t = i / (voiceN - 1);
+      const env = Math.sin(t * Math.PI);                 // center-weighted, like a spoken phrase
+      const r = Math.abs((Math.sin(i * 12.9898) * 43758.5453) % 1); // pseudo-random per bar
+      const r2 = Math.abs((Math.sin(i * 4.137 + 1.7) * 9123.17) % 1);
+      const h = Math.max(8, Math.round(env * (28 + 72 * (0.55 * r + 0.45 * r2))));
+      const op = (0.4 + 0.6 * env).toFixed(2);
+      const dur = (0.85 + r * 0.9).toFixed(2);
+      const delay = (r2 * 0.7).toFixed(2);
+      return { h, op, dur, delay };
+    });
+
+    return {
+      themeStyle,
+      isA: hero === 'A', isB: hero === 'B', isC: hero === 'C',
+      chooseA: () => this.setState({ hero: 'A' }),
+      chooseB: () => this.setState({ hero: 'B' }),
+      chooseC: () => this.setState({ hero: 'C' }),
+      aBg: hero === 'A' ? sel : off, aFg: hero === 'A' ? selFg : offFg,
+      bBg: hero === 'B' ? sel : off, bFg: hero === 'B' ? selFg : offFg,
+      cBg: hero === 'C' ? sel : off, cFg: hero === 'C' ? selFg : offFg,
+      howSimple: howLayout === 'simple',
+      howEditorial: howLayout === 'editorial',
+      howTimeline: howLayout === 'timeline',
+      howCards: howLayout === 'cards',
+      cardRef: this.cardRef,
+      steps, sampleCards, reviews, tiers, faqs, voiceBars,
+    };
+  }
+}
+</script>
+</body>
+</html>
